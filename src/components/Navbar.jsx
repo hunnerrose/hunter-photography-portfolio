@@ -1,33 +1,42 @@
 import { Link } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+
+import { styles } from '../styles';
+import { navLinks } from '../constants';
+
 
 const Navbar = () => {
+
+    const [active, setActive] = useState('')
+    
     return (
-        <nav className="flex flex-row bg-gray-100 p-2 mt-3 mx-4 rounded">
-            <div className="flex flex-row justify-end font-bold">
+        <nav className={`${styles.paddingX} w-full flex items-center py-5 fixed top-0 z-20 bg-primary`}>
+            <div className="w-full flex justify-between items-center max-w-7xl mx-auto">
                 <Link 
                     to="/" 
-                    className="px-3"
+                    className="flex items-center gap-2" 
+                    onClick={() => {
+                        setActive("");
+                        window.scrollTo(0,0)
+                      }}
                 >
-                    <h3>Portraits</h3>
                 </Link>
-                <Link 
-                    to="/motion"
-                    className="px-3"
-                >
-                    <h3>Motion</h3>
-                </Link>
-                <Link 
-                    to="/about"
-                    className="px-3"
-                >
-                    <h3>About</h3>
-                </Link>
-                <Link 
-                    to="/contact"
-                    className="px-3"
-                >
-                    <h3>Contact</h3>
-                </Link>
+                <ul className="list-none hidden sm:flex flex-row gap-10">
+                    {navLinks.map((link) => (
+                        <li
+                        key={link.id}
+                        className={`${
+                            active === link.title
+                                ? "text-white"
+                                : "text-secondary"
+                        } hover:text-white text-[18px] font-medium cursor-pointer`}
+                        onClick={() => setActive(link.title)}
+                        >
+                        <a href={`#${link.id}`}>{link.title}</a>
+                        </li>
+                    ))}
+                </ul>
+                
             </div>
         </nav>
     )

@@ -1,5 +1,6 @@
 import { BrowserRouter } from 'react-router-dom';
 
+// import { Contact, Motion, Portraits, About, Navbar } from './components'
 import Contact from './components/Contact';
 import Motion from './components/Motion';
 import Portraits from './components/Portraits';
@@ -11,12 +12,17 @@ const App = () => {
 
   return (
     <BrowserRouter>
-      <Navbar/>
-      <div className="App">
-        <Contact/>
-        <Motion/>
-        <Portraits/>
-        <About/>
+      <div className="relative z-0 bg-primary">
+        <div className="bg-hero-pattern bg-cover bg-no-repeat bg-center">
+            <Navbar />
+
+        </div>
+        <div className="App">
+          <Contact/>
+          <Motion/>
+          <Portraits/>
+          <About/>
+        </div>
       </div>
     </BrowserRouter>
   )
